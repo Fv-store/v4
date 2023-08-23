@@ -291,9 +291,8 @@ menu
 }
 
 clear
-figlet 'My Fv store' | lolcat
 echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
-echo -e "${CYAN}│${NC}${GARIS}                      << INFORMASI VPS >>                   ${NC}${CYAN}|${NC}"
+echo -e "${CYAN}│${NC}${GARIS}                     << INFORMASI VPS >>                    ${NC}${CYAN}|${NC}"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
 echo -e "  ${WHITE}Sever Uptime        ${NC}${BIGreen}  : $( uptime -p  | cut -d " " -f 2-10000 ) "
 echo -e "  ${WHITE}Current Time        ${NC}${BIGreen}  : $( date -d "0 days" +"%d-%m-%Y | %X" )"
@@ -317,27 +316,27 @@ echo -e "${CYAN}└────────────────────�
 echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
 echo -e "${CYAN}│${NC}${GARIS}                     << MENU TUNNELING >>                   ${NC}${CYAN}|${NC}"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
-echo -e "   ${CYAN}[${BIWhite}01${BICyan}] SSH     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}06${BICyan}] SETTING    ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
-echo -e "   ${CYAN}[${BIWhite}02${BICyan}] VMESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}07${BICyan}] BACKUP     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
-echo -e "   ${CYAN}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}08${BICyan}] ADD-HOST   ${NC}"
-echo -e "   ${CYAN}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}09${BICyan}] GEN SSL    ${NC}"
-echo -e "   ${CYAN}[${BIWhite}05${BICyan}] TRIAL   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}10${BICyan}] INSTAL UDP ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
+echo -e "   ${BICyan}[${NC}${WHITE}01${NC}${BICyan}] SSH     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}06${NC}${BICyan}] SETTING    ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
+echo -e "   ${BICyan}[${NC}${WHITE}02${NC}${BICyan}] VMESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}07${NC}${BICyan}] BACKUP     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
+echo -e "   ${BICyan}[${NC}${WHITE}03${NC}${BICyan}] VLESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}08${NC}${BICyan}] INSTAL UDP ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
+echo -e "   ${BICyan}[${NC}${WHITE}04${NC}${BICyan}] TROJAN  ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}09${NC}${BICyan}] GEN SSL    ${NC}"
+echo -e "   ${BICyan}[${NC}${WHITE}05${NC}${BICyan}] TRIAL   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}10${NC}${BICyan}] ADD-HOST   ${NC}"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
-echo "${WHITE}"
+echo "\033[0;97m"
 read -p "   Select menu << 1 - 10 >> : " opt
 echo -e ""
 case $opt in
-1) clear ; menu-ssh ;;
-2) clear ; menu-vmess ;;
-3) clear ; menu-vless ;;
-4) clear ; menu-trojan ;;
-5) clear ; menu-trial ;;
-6) clear ; menu-set ;;
-7) clear ; menu-bckp ;;
-8) clear ; add-host ;;
-9) clear ; certv2ray ;;
-10) clear ; clear ; wget --load-cookies /tmp/cookies.txt ${UDPX} -O install-udp && rm -rf /tmp/cookies.txt && chmod +x install-udp && ./install-udp ;;
-0) clear ; menu ;;
+1 | 01) clear ; menu-ssh ;;
+2 | 02) clear ; menu-vmess ;;
+3 | 03) clear ; menu-vless ;;
+4 | 04) clear ; menu-trojan ;;
+5 | 05) clear ; menu-trial ;;
+6 | 06) clear ; menu-set ;;
+7 | 07) clear ; menu-bckp ;;
+8 | 08) clear ; clear ; wget --load-cookies /tmp/cookies.txt ${UDPX} -O install-udp && rm -rf /tmp/cookies.txt && chmod +x install-udp && ./install-udp ;;
+9 | 09) clear ; certv2ray ;;
+10| 10) clear ; add-host ;;
+0 | 00) clear ; menu ;;
 x) exit ;;
 *) echo -e "" ; echo "Press any key to back exit" ; sleep 1 ; exit ;;
 esac
