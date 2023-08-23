@@ -196,47 +196,29 @@ persencpu="$(echo "scale=2; $cpu1+$cpu2" | bc)"
 clear
 clear && clear && clear
 clear;clear;clear
-cek=$(service ssh status | grep active | cut -d ' ' -f5)
-if [ "$cek" = "active" ]; then
-stat=-f5
+# // SSH Websocket Proxy
+ssh_ws=$( systemctl status ws-epro | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
+if [[ $ssh_ws == "running" ]]; then
+    status_ws="${GREEN}ON${NC}"
 else
-stat=-f7
+    status_ws="${RED}OFF${NC}"
 fi
-ssh=$(service ssh status | grep active | cut -d ' ' $stat)
-if [ "$ssh" = "active" ]; then
-ressh="${green}ON${NC}"
+
+sshws_s="${GREEN}ON${NC}"
+# // nginx
+nginx=$( systemctl status nginx | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
+if [[ $nginx == "running" ]]; then
+    status_nginx="${GREEN}ON${NC}"
 else
-ressh="${red}OFF${NC}"
+    status_nginx="${RED}OFF${NC}"
 fi
-sshstunel=$(service stunnel4 status | grep active | cut -d ' ' $stat)
-if [ "$sshstunel" = "active" ]; then
-resst="${green}ON${NC}"
+
+# // SSH Websocket Proxy
+xray=$(/etc/init.d/ssh status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+if [[ $xray == "running" ]]; then
+    status_xray="${GREEN}ON${NC}"
 else
-resst="${red}OFF${NC}"
-fi
-sshws=$(service ws-stunnel status | grep active | cut -d ' ' $stat)
-if [ "$sshws" = "active" ]; then
-ressshws="${green}ON${NC}"
-else
-ressshws="${red}OFF${NC}"
-fi
-ngx=$(service nginx status | grep active | cut -d ' ' $stat)
-if [ "$ngx" = "active" ]; then
-resngx="${green}ON${NC}"
-else
-resngx="${red}OFF${NC}"
-fi
-dbr=$(service dropbear status | grep active | cut -d ' ' $stat)
-if [ "$dbr" = "active" ]; then
-resdbr="${green}ON${NC}"
-else
-resdbr="${red}OFF${NC}"
-fi
-v2r=$(service xray status | grep active | cut -d ' ' $stat)
-if [ "$v2r" = "active" ]; then
-resv2r="${green}ON${NC}"
-else
-resv2r="${red}OFF${NC}"
+    status_xray="${RED}OFF${NC}"
 fi
 function addhost(){
 clear
@@ -306,13 +288,14 @@ echo -e "  ${WHITE}Clients Name        ${NC}${BIYellow}  : $Name ${NC}"
 echo -e "  ${WHITE}Script Expired      ${NC}${BIYellow}  : $Exp (${NC}${BIGreen} $dayleft Days ${NC}${BIYellow})${NC}"
 echo -e "  ${WHITE}Developer           ${NC}${BIYellow}  : FV STORE ${NC}"
 echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
-echo -e "${CYAN}│$NC ${BICyan}HARI ini${NC}: ${red}$ttoday$NC ${BICyan}KEMARIN${NC}: ${red}$tyest$NC ${BICyan}BULAN${NC}: ${red}$tmon$NC $NC"
+echo -e "${CYAN}│${NC}${GARIS}                     << INFORMASI VPS >>                    ${NC}${CYAN}|${NC}"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
 echo -e "      ${BIGreen}[ SSH Websocket: ${sshws_s} ${BIGreen}]  [ NGINX: ${status_nginx} ${BIGreen}] [ X-RAY : ${status_xray} ${BIGreen}] "
 echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
 echo -e "${CYAN}│  \033[0m ${BOLD}${GREEN}   ${BIYellow} SSH${GREEN}       ${BIYellow}VMESS  ${GREEN}.    ${BIYellow}VLESS  ${GREEN}     ${BIYellow}TROJAN${GREEN}     $NC "
 echo -e "${CYAN}│  \033[0m ${Blue}     $ssh1         $vma           $vla           $tra              $NC"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
+echo -e " ${BICyan}HARI ini${NC}: ${red}$ttoday$NC ${BICyan}KEMARIN${NC}: ${red}$tyest$NC ${BICyan}BULAN${NC}: ${red}$tmon$NC $NC"
 echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
 echo -e "${CYAN}│${NC}${GARIS}                     << MENU TUNNELING >>                   ${NC}${CYAN}|${NC}"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
@@ -322,7 +305,7 @@ echo -e "   ${BICyan}[${NC}${WHITE}03${NC}${BICyan}] VLESS   ${BICyan}[${BIYello
 echo -e "   ${BICyan}[${NC}${WHITE}04${NC}${BICyan}] TROJAN  ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}09${NC}${BICyan}] GEN SSL    ${NC}"
 echo -e "   ${BICyan}[${NC}${WHITE}05${NC}${BICyan}] TRIAL   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}10${NC}${BICyan}] ADD-HOST   ${NC}"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
-echo "\033[0;97m"
+echo -e "\033[0;97m"
 read -p "   Select menu << 1 - 10 >> : " opt
 echo -e ""
 case $opt in
