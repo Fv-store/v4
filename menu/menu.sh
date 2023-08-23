@@ -57,6 +57,10 @@ Exp=$(curl -sS https://raw.githubusercontent.com/Fv-store/ipvps/main/ip | grep $
 fi
 
 # =========================================
+ISP=$(curl -s ipinfo.io/org?token=7578ac19afd785 | cut -d " " -f 2-10 )
+CITY=$(curl -s ipinfo.io/city?token=7578ac19afd785 )
+IPVPS=$(wget -qO- ipinfo.io/ip)
+# =========================================
 vlx=$(grep -c -E "^#& " "/etc/xray/config.json")
 let vla=$vlx/2
 vmc=$(grep -c -E "^### " "/etc/xray/config.json")
@@ -70,14 +74,22 @@ let ssa=$ssx/2
 
 UDPX="https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1S3IE25v_fyUfCLslnujFBSBMNunDHDk2"
 # // Exporting Language to UTF-8
+export LC_ALL='en_US.UTF-8'
+export LANG='en_US.UTF-8'
+export LANGUAGE='en_US.UTF-8'
+export LC_CTYPE='en_US.utf8'
+
+# // Exporting Language to UTF-8
+
 BIBlack='\033[1;90m'      # Black
 BIRed='\033[1;91m'        # Red
 BIGreen='\033[1;92m'      # Green
-BIYellow='\033[1;93m'     # Yellow
+BIYellow='\033[1;33m'     # Yellow
 BIBlue='\033[1;94m'       # Blue
 BIPurple='\033[1;95m'     # Purple
 BICyan='\033[1;96m'       # Cyan
-BIWhite='\033[1;97m'      # White
+CYAN='\033[1;96m'       # Cyan
+LIGHT='\033[1;97m'      # White
 UWhite='\033[4;37m'       # White
 On_IPurple='\033[0;105m'  #
 On_IRed='\033[0;101m'
@@ -89,7 +101,42 @@ IBlue='\033[0;94m'        # Blue
 IPurple='\033[0;95m'      # Purple
 ICyan='\033[0;96m'        # Cyan
 IWhite='\033[0;97m'       # White
-NC='\e[0m'
+WHITE='\033[0;97m'        # WHITE
+GARIS='\E[44;1;39m'        # Garis Biru
+
+# // Export Color & Information
+export RED='\033[0;31m'
+export GREEN='\033[0;32m'
+export YELLOW='\033[0;33m'
+export BLUE='\033[0;34m'
+export PURPLE='\033[0;35m'
+export CYAN='\033[0;36m'
+export LIGHT='\033[0;37m'
+export NC='\033[0m'
+
+
+
+# // Export Banner Status Information
+export EROR="[${RED} EROR ${NC}]"
+export INFO="[${YELLOW} INFO ${NC}]"
+export OKEY="[${GREEN} OKEY ${NC}]"
+export PENDING="[${YELLOW} PENDING ${NC}]"
+export SEND="[${YELLOW} SEND ${NC}]"
+export RECEIVE="[${YELLOW} RECEIVE ${NC}]"
+
+# // Export Align
+export BOLD="\e[1m"
+export WARNING="${RED}\e[5m"
+export UNDERLINE="\e[4m"
+
+# // Exporting URL Host
+export Server_URL="autosc.me/aio"
+export Server_Port="443"
+export Server_IP="underfined"
+export Script_Mode="Stable"
+export Auther="FranataSTORE"
+
+###########- END COLOR CODE -##########
 #Download/Upload today
 dtoday="$(vnstat -i eth0 | grep "today" | awk '{print $2" "substr ($3, 1, 1)}')"
 utoday="$(vnstat -i eth0 | grep "today" | awk '{print $5" "substr ($6, 1, 1)}')"
@@ -108,17 +155,6 @@ clear
 
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
-
-
-# // Export Color & Information
-export RED='\033[0;31m'
-export GREEN='\033[0;32m'
-export YELLOW='\033[0;33m'
-export BLUE='\033[0;34m'
-export PURPLE='\033[0;35m'
-export CYAN='\033[0;36m'
-export LIGHT='\033[0;37m'
-export NC='\033[0m'
 
 # // Export Banner Status Information
 export EROR="[${RED} EROR ${NC}]"
@@ -230,38 +266,42 @@ echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu
 }
-export sem=$( curl -s https://raw.githubusercontent.com/artanodrop/permission/main/versions)
-export pak=$( cat /home/.ver)
-IPVPS=$(curl -s ipinfo.io/ip )
+
 clear
+echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
+echo -e "${CYAN}│${NC}${GARIS}                      << INFORMASI VPS >>                   ${NC}${CYAN}|${NC}"
+echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
+echo -e "  ${WHITE}Sever Uptime        ${NC}${BIGreen}  : $( uptime -p  | cut -d " " -f 2-10000 ) "
+echo -e "  ${WHITE}Current Time        ${NC}${BIGreen}  : $( date -d "0 days" +"%d-%m-%Y | %X" )"
+echo -e "  ${WHITE}Operating System    ${NC}${BIGreen}  : $( cat /etc/os-release | grep -w PRETTY_NAME | sed 's/PRETTY_NAME//g' | sed 's/=//g' | sed 's/"//g')( $(uname -m))"
+echo -e "  ${WHITE}Domain VPS          ${NC}${BIGreen}  : $( cat /etc/xray/domain )"
+echo -e "  ${WHITE}Server IP           ${NC}${BIGreen}  : ${IPVPS}"
+echo -e "  ${WHITE}ISP & CITY          ${NC}${BIGreen}  : ${ISP}"" & ${CITY}"
+echo -e "  ${WHITE}Ram                 ${NC}${BIGreen}  : ${uram} / ${tram}GB"
+echo -e "  ${WHITE}CPU USAGE           ${NC}${BIGreen}  : ${cpu_usage}"
+echo -e "  ${WHITE}Clients Name        ${NC}${BIYellow}  : $Name ${NC}"
+echo -e "  ${WHITE}Script Expired      ${NC}${BIYellow}  : $Exp (${NC}${BIGreen} $dayleft Days ${NC}${BIYellow})${NC}"
+echo -e "  ${WHITE}Developer           ${NC}${BIYellow}  : FV STORE ${NC}"
+echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
+echo -e "${CYAN}│${NC}${GARIS}                     << STATUS SERVICE >>                   ${NC}${CYAN}|${NC}"
+echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
+echo -e "     ${BICyan} SSH ${NC}: $ressh"" ${BICyan} NGINX ${NC}: $resngx"" ${BICyan}  XRAY ${NC}: $resv2r"
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BICyan} │                  ${BIWhite}${UWhite}Server Informations${NC}"
-echo -e "${BICyan} │"
-echo -e " ${BICyan}│  ${BICyan}Use Core        :  ${BIPurple}XRAY${NC}"
-echo -e " ${BICyan}│  ${BICyan}Current Domain  :  ${BIPurple}$(cat /etc/xray/domain)${NC}"
-echo -e " ${BICyan}│  ${BICyan}IP-VPS          :  ${BIYellow}$IPVPS${NC}"
-echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
-echo -e "     ${BICyan} SSH ${NC}: $ressh"" ${BICyan} NGINX ${NC}: $resngx"" ${BICyan}  XRAY ${NC}: $resv2r"" ${BICyan} TROJAN ${NC}: $resv2r"
-echo -e "   ${BICyan}     STUNNEL ${NC}: $resst" "${BICyan} DROPBEAR ${NC}: $resdbr" "${BICyan} SSH-WS ${NC}: $ressshws"
-echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "     ${BICyan}[${BIWhite}01${BICyan}] SSH     ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"    "     ${BICyan}[${BIWhite}06${BICyan}] TRIALL    ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "${BICyan}   │"
-echo -e "     ${BICyan}[${BIWhite}02${BICyan}] VMESS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "     ${BICyan}[${BIWhite}07${BICyan}] BACKUP    ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "${BICyan}   │"
-echo -e "     ${BICyan}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}08${BICyan}] ADD-HOST      ${NC}" "${BICyan}     │"
-echo -e "     ${BICyan}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "     ${BICyan}[${BIWhite}09${BICyan}] GEN SSL             │"
-echo -e "     ${BICyan}[${BIWhite}05${BICyan}] SETTING ${BICyan}[${BIYellow}Menu${BICyan}]${NC}"  "     ${BICyan}[${BIWhite}10${BICyan}] INSTAL UDP${BICyan}[${BIYellow}Menu${BICyan}]${NC}" "${BICyan}   │${NC}"
-echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
+echo -e "${BICyan} │$NC ${BICyan}HARI ini${NC}: ${red}$ttoday$NC ${BICyan}KEMARIN${NC}: ${red}$tyest$NC ${BICyan}BULAN${NC}: ${red}$tmon$NC $NC"
+echo -e "${BICyan} └─────────────────────────────────────────────────────┘${NC}"
+echo -e "${BICyan}┌────────────────────────────────────────────────────────────┐${NC}"
+echo -e "${BICyan}│${NC}${GARIS}                     << MENU TUNNELING >>                   ${NC}${CYAN}|${NC}"
+echo -e "${BICyan}└────────────────────────────────────────────────────────────┘${NC}"
+echo -e "   ${BICyan}[${BIWhite}01${BICyan}] SSH     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}06${BICyan}] SETTING    ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""${BICyan}    │"
+echo -e "   ${BICyan}[${BIWhite}02${BICyan}] VMESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}07${BICyan}] BACKUP     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""${BICyan}    │"
+echo -e "   ${BICyan}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}08${BICyan}] ADD-HOST   ${NC}""${BICyan}     │"
+echo -e "   ${BICyan}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}09${BICyan}] GEN SSL    ${NC}""${BICyan}     │"
+echo -e "   ${BICyan}[${BIWhite}05${BICyan}] TRIAL   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}10${BICyan}] INSTAL UDP ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""${BICyan}    │"
+echo -e "${BICyan}└─────────────────────────────────────────────────────────┘${NC}"
 echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
 echo -e "${BICyan} │  \033[0m ${BOLD}${GREEN}   ${BIYellow} SSH${GREEN}       ${BIYellow}VMESS  ${GREEN}.    ${BIYellow}VLESS  ${GREEN}     ${BIYellow}TROJAN${GREEN}     $NC "
 echo -e "${BICyan} │  \033[0m ${Blue}     $ssh1         $vma           $vla           $tra              $NC"
 echo -e "${BICyan} └─────────────────────────────────────────────────────┘${NC}"
-echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BICyan} │$NC ${BICyan}HARI ini${NC}: ${red}$ttoday$NC ${BICyan}KEMARIN${NC}: ${red}$tyest$NC ${BICyan}BULAN${NC}: ${red}$tmon$NC $NC"
-echo -e "${BICyan} └─────────────────────────────────────────────────────┘${NC}"
-echo -e " ${BICyan}┌─────────────────────────────────────┐${NC}"
-echo -e " ${BICyan}│  Version      ${NC} : Ver3. Last Update"
-echo -e " ${BICyan}│  User       ${NC}   :\033[1;36m $Name \e[0m"
-echo -e " ${BICyan}│  Expiry script${NC} : ${BIYellow}$Exp${NC} Days"
-echo -e " ${BICyan}└─────────────────────────────────────┘${NC}"
 echo
 read -p " Select menu : " opt
 echo -e ""
@@ -270,13 +310,13 @@ case $opt in
 2) clear ; menu-vmess ;;
 3) clear ; menu-vless ;;
 4) clear ; menu-trojan ;;
-5) clear ; menu-set ;;
-6) clear ; menu-trial ;;
+5) clear ; menu-trial ;;
+6) clear ; menu-set ;;
 7) clear ; menu-bckp ;;
 8) clear ; add-host ;;
 9) clear ; certv2ray ;;
 10) clear ; clear ; wget --load-cookies /tmp/cookies.txt ${UDPX} -O install-udp && rm -rf /tmp/cookies.txt && chmod +x install-udp && ./install-udp ;;
-6969) clear ; wget https://raw.githubusercontent.com/Fv-store/v4/main/update.sh && chmod +x update.sh && ./update.sh && rm -f /root/update.sh ;;
+11) clear ; wget https://raw.githubusercontent.com/Fv-store/v4/main/update.sh && chmod +x update.sh && ./update.sh && rm -f /root/update.sh ;;
 0) clear ; menu ;;
 x) exit ;;
 *) echo -e "" ; echo "Press any key to back exit" ; sleep 1 ; exit ;;
