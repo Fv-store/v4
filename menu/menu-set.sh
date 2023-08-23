@@ -52,7 +52,7 @@ echo -e "   ${BICyan}[${BIWhite}10${BICyan}] Setting Auto Reboot"
 echo -e "   ${BICyan}[${BIWhite}11${BICyan}] Update Script"
 echo -e "   ${BICyan}[${BIWhite}00${BICyan}]${NC}${BIYellow}Back To Menu"
 echo -e "${BICyan}└───────────────────────────────────────────────────────────┘${NC}"
-echo "\033[1;97m"
+echo -e "\033[1;97m"
 read -p " Select menu : " opt
 echo -e ""
 case $opt in
