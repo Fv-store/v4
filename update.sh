@@ -90,8 +90,7 @@ wget -O trialtrojango "https://raw.githubusercontent.com/fv-store/v4/main/xray/t
 wget -O deltrgo "https://raw.githubusercontent.com/fv-store/v4/main/xray/deltrgo.sh" && chmod +x deltrgo
 wget -O renewtrgo "https://raw.githubusercontent.com/fv-store/v4/main/xray/renewtrgo.sh" && chmod +x renewtrgo
 wget -O cektrgo "https://raw.githubusercontent.com/fv-store/v4/main/xray/cektrgo.sh" && chmod +x cektrgo
+echo -e " [INFO] Update Successfully"
 sleep 2
 rm -f update.sh
-sleep 1
 menu
-esac
