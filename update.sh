@@ -92,5 +92,6 @@ wget -O renewtrgo "https://raw.githubusercontent.com/fv-store/v4/main/xray/renew
 wget -O cektrgo "https://raw.githubusercontent.com/fv-store/v4/main/xray/cektrgo.sh" && chmod +x cektrgo
 sleep 2
 rm -f update.sh
-sleep 1 
-menu￼
+sleep 1
+menu
+esac
