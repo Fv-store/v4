@@ -323,7 +323,7 @@ echo -e "   ${CYAN}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BIYellow}MENU${BI
 echo -e "   ${CYAN}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}09${BICyan}] GEN SSL    ${NC}"
 echo -e "   ${CYAN}[${BIWhite}05${BICyan}] TRIAL   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}10${BICyan}] INSTAL UDP ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
-echo "${WHITE}
+echo "${WHITE}"
 read -p "   Select menu << 1 - 10 >> : " opt
 echo -e ""
 case $opt in
