@@ -26,7 +26,6 @@ red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 export LANG='en_US.UTF-8'
 export LANGUAGE='en_US.UTF-8'
 
-
 # // Export Color & Information
 export RED='\033[0;31m'
 export GREEN='\033[0;32m'
@@ -36,42 +35,39 @@ export PURPLE='\033[0;35m'
 export CYAN='\033[0;36m'
 export LIGHT='\033[0;37m'
 export NC='\033[0m'
-MYIP=$(wget -qO- ipinfo.io/ip);
-echo "Checking VPS"
-
 clear
-echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "       ${BIWhite}${UWhite}SETTING ${NC}"
-echo -e ""
-echo -e "     ${BICyan}[${BIWhite}01${BICyan}] Panel Domain      "
-echo -e "     ${BICyan}[${BIWhite}02${BICyan}] Change Port All Account      "
-echo -e "     ${BICyan}[${BIWhite}03${BICyan}] Webmin Menu      "
-echo -e "     ${BICyan}[${BIWhite}04${BICyan}] Speedtest VPS   "
-echo -e "     ${BICyan}[${BIWhite}05${BICyan}] About Script     "
-echo -e "     ${BICyan}[${BIWhite}06${BICyan}] Set Auto Reboot   "
-echo -e "     ${BICyan}[${BIWhite}07${BICyan}] Restart All Service"
-echo -e "     ${BICyan}[${BIWhite}08${BICyan}] Change Banner"
-echo -e "     ${BICyan}[${BIWhite}09${BICyan}] Cek Bandwith"
-echo -e "     ${BICyan}[${BIWhite}10${BICyan}] Setting Auto Reboot"
-echo -e "     ${BICyan}[${BIWhite}11${BICyan}] Update Script"
-echo -e " ${BICyan}└─────────────────────────────────────────────────────┘${NC}"
-echo -e "     ${BIYellow}Press x or [ Ctrl+C ] • To-${BIWhite}Exit${NC}"
-echo ""
+echo -e "${BICyan}┌────────────────────────────────────────────────────────────┐${NC}"
+echo -e "${BICyan}│${NC}${GARIS}                      << SETTINGS MENU >>                   ${NC}${BICyan}|${NC}"
+echo -e "${BICyan}└────────────────────────────────────────────────────────────┘${NC}"
+echo -e "   ${BICyan}[${BIWhite}01${BICyan}] Add Domain / Renew      "
+echo -e "   ${BICyan}[${BIWhite}02${BICyan}] Change Port All Account      "
+echo -e "   ${BICyan}[${BIWhite}03${BICyan}] Webmin Menu      "
+echo -e "   ${BICyan}[${BIWhite}04${BICyan}] Speedtest VPS   "
+echo -e "   ${BICyan}[${BIWhite}05${BICyan}] Tentang Script     "
+echo -e "   ${BICyan}[${BIWhite}06${BICyan}] Set Auto Reboot   "
+echo -e "   ${BICyan}[${BIWhite}07${BICyan}] Restart All Service"
+echo -e "   ${BICyan}[${BIWhite}08${BICyan}] Change Banner"
+echo -e "   ${BICyan}[${BIWhite}09${BICyan}] Cek Bandwith"
+echo -e "   ${BICyan}[${BIWhite}10${BICyan}] Setting Auto Reboot"
+echo -e "   ${BICyan}[${BIWhite}11${BICyan}] Update Script"
+echo -e "   ${BICyan}[${BIWhite}00${BICyan}]${NC}${BIYellow}Back To Menu"
+echo -e "${BICyan}└───────────────────────────────────────────────────────────┘${NC}"
+echo "\033[1;97m"
 read -p " Select menu : " opt
 echo -e ""
 case $opt in
-1) clear ; menu-domain ; exit ;;
-2) clear ; port-change ; exit ;;
-3) clear ; menu-webmin ; exit ;;
-4) clear ; speedtest ; exit ;;
-5) clear ; about ; exit ;;
-6) clear ; auto-reboot ; exit ;;
-7) clear ; restart ; exit ;;
-8) clear ; nano /etc/issue.net ; exit ;; #ssh-vpn banner.conf
-9) clear ; bw ; exit ;;
-10) clear ; jam ; exit ;;
-11) wget https://raw.githubusercontent.com/Fv-store/v4/main/update.sh && chmod +x update.sh && ./update.sh && rm -f /root/update.sh ;;
-0) clear ; menu ; exit ;;
+1 | 01) clear ; menu-domain ; exit ;;
+2 | 02) clear ; port-change ; exit ;;
+3 | 03) clear ; menu-webmin ; exit ;;
+4 | 04) clear ; speedtest ; exit ;;
+5 | 05) clear ; about ; exit ;;
+6 | 06) clear ; auto-reboot ; exit ;;
+7 | 07) clear ; restart ; exit ;;
+8 | 08) clear ; nano /etc/issue.net ; exit ;; #ssh-vpn banner.conf
+9 | 09) clear ; bw ; exit ;;
+10| 10) clear ; jam ; exit ;;
+11| 11) wget https://raw.githubusercontent.com/Fv-store/v4/main/update.sh && chmod +x update.sh && ./update.sh && rm -f /root/update.sh ;;
+0 | 00) clear ; menu ; exit ;;
 x) exit ;;
-*) echo -e "" ; echo "Anda salah tekan" ; sleep 1 ; menu-set ;;
+*) echo -e "" ; echo "Menu yg anda pilih tidak valid" ; sleep 1 ; menu-set ;;
 esac
