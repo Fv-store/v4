@@ -169,6 +169,29 @@ export BOLD="\e[1m"
 export WARNING="${RED}\e[5m"
 export UNDERLINE="\e[4m"
 
+# Getting Ram Information
+tram=$( free -h | awk 'NR==2 {print $2}' )
+uram=$( free -h | awk 'NR==2 {print $3}' )
+# Getting CPU Information
+cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
+cpu_usage="$((${cpu_usage1/\.*} / ${corediilik:-1}))"
+cpu_usage+=" %"
+# TOTAL RAM
+total_ram=` grep "MemTotal: " /proc/meminfo | awk '{ print $2}'`
+totalram=$(($total_ram/1024))
+
+# Getting CPU Information
+cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
+cpu_usage="$((${cpu_usage1/\.*} / ${corediilik:-1}))"
+cpu_usage+=" %"
+# TOTAL RAM
+total_ram=` grep "MemTotal: " /proc/meminfo | awk '{ print $2}'`
+totalram=$(($total_ram/1024))
+
+persenmemori="$(echo "scale=2; $usmem*100/$tomem" | bc)"
+#persencpu=
+persencpu="$(echo "scale=2; $cpu1+$cpu2" | bc)"
+
 # // Clear
 clear
 clear && clear && clear
@@ -283,27 +306,24 @@ echo -e "  ${WHITE}Clients Name        ${NC}${BIYellow}  : $Name ${NC}"
 echo -e "  ${WHITE}Script Expired      ${NC}${BIYellow}  : $Exp (${NC}${BIGreen} $dayleft Days ${NC}${BIYellow})${NC}"
 echo -e "  ${WHITE}Developer           ${NC}${BIYellow}  : FV STORE ${NC}"
 echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
-echo -e "${CYAN}│${NC}${GARIS}                     << STATUS SERVICE >>                   ${NC}${CYAN}|${NC}"
+echo -e "${CYAN}│$NC ${BICyan}HARI ini${NC}: ${red}$ttoday$NC ${BICyan}KEMARIN${NC}: ${red}$tyest$NC ${BICyan}BULAN${NC}: ${red}$tmon$NC $NC"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
-echo -e "     ${BICyan} SSH ${NC}: $ressh"" ${BICyan} NGINX ${NC}: $resngx"" ${BICyan}  XRAY ${NC}: $resv2r"
-echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BICyan} │$NC ${BICyan}HARI ini${NC}: ${red}$ttoday$NC ${BICyan}KEMARIN${NC}: ${red}$tyest$NC ${BICyan}BULAN${NC}: ${red}$tmon$NC $NC"
-echo -e "${BICyan} └─────────────────────────────────────────────────────┘${NC}"
-echo -e "${BICyan}┌────────────────────────────────────────────────────────────┐${NC}"
-echo -e "${BICyan}│${NC}${GARIS}                     << MENU TUNNELING >>                   ${NC}${CYAN}|${NC}"
-echo -e "${BICyan}└────────────────────────────────────────────────────────────┘${NC}"
-echo -e "   ${BICyan}[${BIWhite}01${BICyan}] SSH     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}06${BICyan}] SETTING    ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""${BICyan}    │"
-echo -e "   ${BICyan}[${BIWhite}02${BICyan}] VMESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}07${BICyan}] BACKUP     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""${BICyan}    │"
-echo -e "   ${BICyan}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}08${BICyan}] ADD-HOST   ${NC}""${BICyan}     │"
-echo -e "   ${BICyan}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}09${BICyan}] GEN SSL    ${NC}""${BICyan}     │"
-echo -e "   ${BICyan}[${BIWhite}05${BICyan}] TRIAL   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}10${BICyan}] INSTAL UDP ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""${BICyan}    │"
-echo -e "${BICyan}└─────────────────────────────────────────────────────────┘${NC}"
-echo -e "${BICyan} ┌─────────────────────────────────────────────────────┐${NC}"
-echo -e "${BICyan} │  \033[0m ${BOLD}${GREEN}   ${BIYellow} SSH${GREEN}       ${BIYellow}VMESS  ${GREEN}.    ${BIYellow}VLESS  ${GREEN}     ${BIYellow}TROJAN${GREEN}     $NC "
-echo -e "${BICyan} │  \033[0m ${Blue}     $ssh1         $vma           $vla           $tra              $NC"
-echo -e "${BICyan} └─────────────────────────────────────────────────────┘${NC}"
-echo
-read -p " Select menu : " opt
+echo -e "      ${BIGreen}[ SSH Websocket: ${sshws_s} ${BIGreen}]  [ NGINX: ${status_nginx} ${BIGreen}] [ X-RAY : ${status_xray} ${BIGreen}] "
+echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
+echo -e "${CYAN}│  \033[0m ${BOLD}${GREEN}   ${BIYellow} SSH${GREEN}       ${BIYellow}VMESS  ${GREEN}.    ${BIYellow}VLESS  ${GREEN}     ${BIYellow}TROJAN${GREEN}     $NC "
+echo -e "${CYAN}│  \033[0m ${Blue}     $ssh1         $vma           $vla           $tra              $NC"
+echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
+echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
+echo -e "${CYAN}│${NC}${GARIS}                     << MENU TUNNELING >>                   ${NC}${CYAN}|${NC}"
+echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
+echo -e "   ${CYAN}[${BIWhite}01${BICyan}] SSH     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}06${BICyan}] SETTING    ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
+echo -e "   ${CYAN}[${BIWhite}02${BICyan}] VMESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}07${BICyan}] BACKUP     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
+echo -e "   ${CYAN}[${BIWhite}03${BICyan}] VLESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}08${BICyan}] ADD-HOST   ${NC}"
+echo -e "   ${CYAN}[${BIWhite}04${BICyan}] TROJAN  ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}09${BICyan}] GEN SSL    ${NC}"
+echo -e "   ${CYAN}[${BIWhite}05${BICyan}] TRIAL   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${BIWhite}10${BICyan}] INSTAL UDP ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
+echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
+echo "${WHITE}
+read -p "   Select menu << 1 - 10 >> : " opt
 echo -e ""
 case $opt in
 1) clear ; menu-ssh ;;
