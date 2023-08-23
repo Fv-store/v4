@@ -291,6 +291,7 @@ menu
 }
 
 clear
+figlet 'My Fv store' | lolcat
 echo -e "${CYAN}┌────────────────────────────────────────────────────────────┐${NC}"
 echo -e "${CYAN}│${NC}${GARIS}                      << INFORMASI VPS >>                   ${NC}${CYAN}|${NC}"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
@@ -336,7 +337,6 @@ case $opt in
 8) clear ; add-host ;;
 9) clear ; certv2ray ;;
 10) clear ; clear ; wget --load-cookies /tmp/cookies.txt ${UDPX} -O install-udp && rm -rf /tmp/cookies.txt && chmod +x install-udp && ./install-udp ;;
-11) clear ; wget https://raw.githubusercontent.com/Fv-store/v4/main/update.sh && chmod +x update.sh && ./update.sh && rm -f /root/update.sh ;;
 0) clear ; menu ;;
 x) exit ;;
 *) echo -e "" ; echo "Press any key to back exit" ; sleep 1 ; exit ;;
