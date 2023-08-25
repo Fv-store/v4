@@ -5,8 +5,8 @@ rm -rf /root/xray/scdomain
 mkdir -p /root/xray
 clear
 sub=$(</dev/urandom tr -dc a-z0-9 | head -c5)
-DOMAIN=givpn.online
-SUB_DOMAIN=${sub}fv-store.my.id
+DOMAIN=fv-store.my.id
+SUB_DOMAIN=${sub}.fv-store.my.id
 CF_ID=padliapandi459@gmail.com
 CF_KEY=1a700ef4a22e642f0ea8d43420bb0b1237589
 set -euo pipefail
@@ -36,12 +36,13 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      -H "Content-Type: application/json" \
      --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}')
 echo "Host : $SUB_DOMAIN"
-echo "IP=$SUB_DOMAIN" > /var/lib/SIJA/ipvps.conf
-echo "$SUB_DOMAIN" > /root/scdomain
-echo "$SUB_DOMAIN" > /etc/xray/scdomain
+echo "IP=$SUB_DOMAIN" > /var/lib/ipvps.conf
 echo "$SUB_DOMAIN" > /root/domain
-echo "$SUB_DOMAIN" > /etc/v2ray/domain
 echo "$SUB_DOMAIN" > /etc/xray/domain
+echo "$SUB_DOMAIN" > /etc/v2ray/domain
+echo "$SUB_DOMAIN" > /root/scdomain
+echo "$SUB_DOMAIN" > /root/xray/scdomain
 echo -e "Done Record Domain= ${SUB_DOMAIN} For VPS"
 rm -rf cf
 sleep 1
+
