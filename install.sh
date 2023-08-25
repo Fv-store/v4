@@ -8,10 +8,6 @@ red='\e[1;31m'
 green='\e[0;32m'
 yell='\e[1;33m'
 tyblue='\e[1;36m'
-BRed='\e[1;31m'
-BGreen='\e[1;32m'
-BYellow='\e[1;33m'
-BBlue='\e[1;34m'
 NC='\e[0m'
 purple() { echo -e "\\033[35;1m${*}\\033[0m"; }
 tyblue() { echo -e "\\033[36;1m${*}\\033[0m"; }
@@ -59,30 +55,31 @@ if [ "" = "$PKG_OK" ]; then
   echo -e "[ ${yell}WARNING${NC} ] Try to install ...."
   echo "No $REQUIRED_PKG. Setting up $REQUIRED_PKG."
   apt-get --yes install $REQUIRED_PKG
-  sleep 1
+  sleep 0.5
   echo ""
-  sleep 1
+  sleep 0.5
   echo -e "[ ${tyblue}NOTES${NC} ] If error you need.. to do this"
-  sleep 1
+  sleep 0.5
   echo ""
-  sleep 1
+  sleep 0.5
   echo -e "[ ${tyblue}NOTES${NC} ] 1. apt update -y"
-  sleep 1
+  sleep 0.5
   echo -e "[ ${tyblue}NOTES${NC} ] 2. apt upgrade -y"
-  sleep 1
+  sleep 0.5
   echo -e "[ ${tyblue}NOTES${NC} ] 3. apt dist-upgrade -y"
-  sleep 1
+  sleep 0.5
   echo -e "[ ${tyblue}NOTES${NC} ] 4. reboot"
-  sleep 1
+  sleep 0.5
   echo ""
-  sleep 1
-  echo -e "[ ${tyblue}NOTES${NC} ] After rebooting"
-  sleep 1
-  echo -e "[ ${tyblue}NOTES${NC} ] Then run this script again"
-  echo -e "[ ${tyblue}NOTES${NC} ] if you understand then tap enter now"
+  sleep 0.5
+  echo -e "[ ${tyblue}NOTES${NC} ] After Udud"
+  sleep 0.5
+  yellow "Script By FV STORE"
+  sleep 0.5
+  echo -e "[ ${tyblue}NOTES${NC} ] Lu ngerti Kgak ngerti , klik Enter"
   read
 else
-  echo -e "[ ${green}INFO${NC} ] Oke installed"
+  echo -e "[ ${green}INFO${NC} ] Oke Tod"
 fi
 
 ttet=`uname -r`
@@ -124,13 +121,13 @@ apt install python -y >/dev/null 2>&1
 echo -e "[ ${green}INFO${NC} ] Aight good ... installation file is ready"
 sleep 2
 echo -ne "[ ${green}INFO${NC} ] Check permission : "
-echo -e "$BGreen Permission Accepted!$NC"
+echo -e "$Green Permission Accepted!$NC"
 
 mkdir -p /var/lib/SIJA >/dev/null 2>&1
 echo "IP=" >> /var/lib/SIJA/ipvps.conf
 
 echo ""
-wget -q https://raw.githubusercontent.com/fv-store/v4/main/tools.sh;chmod +x tools.sh;./tools.sh
+wget -q https://raw.githubusercontent.com/Fv-store/v4/main/tools.sh;chmod +x tools.sh;./tools.sh
 rm tools.sh
 clear
 yellow "Add Domain for vmess/vless/trojan dll"
@@ -148,7 +145,8 @@ read -rp "Input ur domain : " -e pp
 	echo $pp > /root/domain
         echo "IP=$pp" > /var/lib/SIJA/ipvps.conf
     fi
-
+    
+#install ssh ovpn
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "$green      Install SSH / WS               $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
