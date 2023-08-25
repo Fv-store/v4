@@ -8,6 +8,10 @@ red='\e[1;31m'
 green='\e[0;32m'
 yell='\e[1;33m'
 tyblue='\e[1;36m'
+BRed='\e[1;31m'
+BGreen='\e[1;32m'
+BYellow='\e[1;33m'
+BBlue='\e[1;34m'
 NC='\e[0m'
 purple() { echo -e "\\033[35;1m${*}\\033[0m"; }
 tyblue() { echo -e "\\033[36;1m${*}\\033[0m"; }
@@ -119,31 +123,39 @@ apt install git curl -y >/dev/null 2>&1
 apt install python -y >/dev/null 2>&1
 echo -e "[ ${green}INFO${NC} ] Aight good ... installation file is ready"
 sleep 2
-echo -ne "[ ${green}INFO${NC} ] Check permission : "
+echo -ne "[ ${BGreen}INFO${NC} ] Check permission : "
 
+echo -e "$BGreen Permission Accepted!$NC"
+sleep 2
 mkdir -p /var/lib/SIJA >/dev/null 2>&1
 echo "IP=" >> /var/lib/SIJA/ipvps.conf
 
 echo ""
-wget -q https://raw.githubusercontent.com/artanodrop/v4/main/tools.sh;chmod +x tools.sh;./tools.sh
-rm tools.sh
 clear
-yellow "Add Domain for vmess/vless/trojan dll"
-echo " "
-read -rp "Input ur domain : " -e pp
-    if [ -z $pp ]; then
-        echo -e "
-        Nothing input for domain!
-        Then a random domain will be created"
-    else
-        echo "$pp" > /root/scdomain
-	echo "$pp" > /etc/xray/scdomain
-	echo "$pp" > /etc/xray/domain
-	echo "$pp" > /etc/v2ray/domain
-	echo $pp > /root/domain
-        echo "IP=$pp" > /var/lib/SIJA/ipvps.conf
-    fi
-    
+echo -e "$BBlue                     SETUP DOMAIN VPS     $NC"
+echo -e "$BYellow----------------------------------------------------------$NC"
+echo -e "$BGreen 1. Use Domain Random / Gunakan Domain Random $NC"
+echo -e "$BGreen 2. Choose Your Own Domain / Gunakan Domain Sendiri $NC"
+echo -e "$BYellow----------------------------------------------------------$NC"
+read -rp " input 1 or 2 / pilih 1 atau 2 : " dns
+if test $dns -eq 1; then
+wget https://raw.githubusercontent.com/Fv-store/v4/main/cf && chmod +x cf && ./cf
+elif test $dns -eq 2; then
+read -rp "Masukan domain mu : " dom
+echo "IP=$pp" > /var/lib/SIJA/ipvps.conf
+echo "$pp" > /root/scdomain
+echo "$pp" > /etc/xray/scdomain
+echo "$pp" > /root/domain
+echo "$pp" > /etc/v2ray/domain
+echo $pp > /etc/xray/domain
+else 
+echo "Not Found Argument"
+exit 1
+fi
+echo -e "${BGreen}Done!${NC}"
+sleep 2
+clear
+
 #install ssh ovpn
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "$green      Install SSH / WS               $NC"
