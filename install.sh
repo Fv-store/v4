@@ -123,40 +123,32 @@ apt install git curl -y >/dev/null 2>&1
 apt install python -y >/dev/null 2>&1
 echo -e "[ ${green}INFO${NC} ] Aight good ... installation file is ready"
 sleep 2
-echo -ne "[ ${BGreen}INFO${NC} ] Check permission : "
-
+echo -ne "[ ${green}INFO${NC} ] Check permission : "
 echo -e "$BGreen Permission Accepted!$NC"
-sleep 2
+
 mkdir -p /var/lib/SIJA >/dev/null 2>&1
 echo "IP=" >> /var/lib/SIJA/ipvps.conf
 
 echo ""
+wget -q https://raw.githubusercontent.com/fv-store/v4/main/tools.sh;chmod +x tools.sh;./tools.sh
+rm tools.sh
 clear
-echo -e "$BBlue                     SETUP DOMAIN VPS     $NC"
-echo -e "$BYellow----------------------------------------------------------$NC"
-echo -e "$BGreen 1. Use Domain Random / Gunakan Domain Random $NC"
-echo -e "$BGreen 2. Choose Your Own Domain / Gunakan Domain Sendiri $NC"
-echo -e "$BYellow----------------------------------------------------------$NC"
-read -rp " input 1 or 2 / pilih 1 atau 2 : " dns
-if test $dns -eq 1; then
-wget https://raw.githubusercontent.com/Fv-store/v4/main/cf && chmod +x cf && ./cf
-elif test $dns -eq 2; then
-read -rp "Masukan domain mu : " dom
-echo "IP=$pp" > /var/lib/SIJA/ipvps.conf
-echo "$pp" > /root/scdomain
-echo "$pp" > /etc/xray/scdomain
-echo "$pp" > /root/domain
-echo "$pp" > /etc/v2ray/domain
-echo $pp > /etc/xray/domain
-else 
-echo "Not Found Argument"
-exit 1
-fi
-echo -e "${BGreen}Done!${NC}"
-sleep 2
-clear
+yellow "Add Domain for vmess/vless/trojan dll"
+echo " "
+read -rp "Input ur domain : " -e pp
+    if [ -z $pp ]; then
+        echo -e "
+        Nothing input for domain!
+        Then a random domain will be created"
+    else
+        echo "$pp" > /root/scdomain
+	echo "$pp" > /etc/xray/scdomain
+	echo "$pp" > /etc/xray/domain
+	echo "$pp" > /etc/v2ray/domain
+	echo $pp > /root/domain
+        echo "IP=$pp" > /var/lib/SIJA/ipvps.conf
+    fi
 
-#install ssh ovpn
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
 echo -e "$green      Install SSH / WS               $NC"
 echo -e "\e[33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
