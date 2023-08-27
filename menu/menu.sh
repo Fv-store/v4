@@ -302,8 +302,8 @@ echo -e "${CYAN}└────────────────────�
 echo -e "   ${BICyan}[${NC}${WHITE}01${NC}${BICyan}] SSH     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}06${NC}${BICyan}] SETTING    ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
 echo -e "   ${BICyan}[${NC}${WHITE}02${NC}${BICyan}] VMESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}07${NC}${BICyan}] BACKUP     ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
 echo -e "   ${BICyan}[${NC}${WHITE}03${NC}${BICyan}] VLESS   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}08${NC}${BICyan}] INSTAL UDP ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
-echo -e "   ${BICyan}[${NC}${WHITE}04${NC}${BICyan}] TROJAN  ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}09${NC}${BICyan}] GEN SSL    ${NC}"
-echo -e "   ${BICyan}[${NC}${WHITE}05${NC}${BICyan}] TRIAL   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}10${NC}${BICyan}] ADD-HOST   ${NC}"
+echo -e "   ${BICyan}[${NC}${WHITE}04${NC}${BICyan}] TROJAN  ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}09${NC}${BICyan}] GEN SSL    ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
+echo -e "   ${BICyan}[${NC}${WHITE}05${NC}${BICyan}] TRIAL   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}""    ${BICyan}[${NC}${WHITE}10${NC}${BICyan}] ADD-HOST   ${BICyan}[${BIYellow}MENU${BICyan}]${NC}"
 echo -e "${CYAN}└────────────────────────────────────────────────────────────┘${NC}"
 echo -e "\033[0;97m"
 read -p "   Select menu << 1 - 10 >> : " opt
