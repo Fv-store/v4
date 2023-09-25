@@ -16,7 +16,7 @@ MYIP=$(wget -qO- ipinfo.io/ip);
 
 apt install rclone -y
 printf "q\n" | rclone config
-wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/FdlyMots/v4/main/backup/rclone.conf"
+wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/Fv-store/v4/main/backup/rclone.conf"
 #Install Wondershaper
 cd /bin
 git clone  https://github.com/magnific0/wondershaper.git
@@ -43,8 +43,8 @@ logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
 cd /usr/bin
-wget -O backup "https://raw.githubusercontent.com/FdlyMots/v4/main/backup/backup.sh"
-wget -O restore "https://raw.githubusercontent.com/FdlyMots/v4/main/backup/restore.sh"
+wget -O backup "https://raw.githubusercontent.com/Fv-store/v4/main/backup/backup.sh"
+wget -O restore "https://raw.githubusercontent.com/Fv-store/v4/main/backup/restore.sh"
 chmod +x backup
 chmod +x restore
 cd
